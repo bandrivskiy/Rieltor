@@ -1,0 +1,43 @@
+﻿@model PagedList.IPagedList<Rieltor.Models.AllRentViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@using Rieltor.Controllers
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+
+
+<form class="form-horizontal" method="get"  ng-submit="GetPosts()" ng-controller="DropdownlistController">
+    City : <select ng-model="CityId" ng-options="I.Id as I.Name for I in CitiesList" ng-change="GetNaighborhood()">
+        <option value="">Select Country</option>
+    </select>
+    Naighborhood : <select ng-model="NaighborhoodId" ng-options="I.Id as I.Name for I in NaibList">
+        <option value="">{{NaibTextShow}}</option>
+    </select>
+  
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+           
+            <a data-ng-href="@Url.Action("Index", "Rent")?CityId={{CityId}}&NeibId={{NaighborhoodId}}" class="btn btn-default">
+              Filter
+            </a>
+           
+        </div>
+    </div>
+</form>
+
+    
+
+        
+
+
+@{ Html.RenderPartial("AllRent");}
+
+
+
+    
+
+    @section scripts{
+        <script src="~/Scripts/AngularController/DropdownlistController.js"></script>
+    }

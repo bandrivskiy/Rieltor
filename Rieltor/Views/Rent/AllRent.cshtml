@@ -1,0 +1,38 @@
+﻿
+@model PagedList.IPagedList<Rieltor.Models.AllRentViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@using Rieltor.Controllers
+
+<table class="table" id="filtrup">
+    <thead>
+
+    </thead>
+    <tbody>
+        @foreach (var rent in RentController.rentList)
+            {
+            <tr>
+                <td>@rent.Id</td>
+                <td>@rent.City.Name</td>
+                <td>@rent.Neigh.Name</td>
+                <td>@rent.Address.Street</td>
+                <td>@rent.Address.Number</td>
+                <td>@rent.AllArea</td>
+                <td>@rent.LiveArea</td>
+                <td>@rent.CookArea</td>
+                <td>@rent.AllFlor</td>
+                <td>@rent.Flor</td>
+                <td>@rent.Description</td>
+                <td>@Html.ActionLink("Datails", "Rent", "Rent", new { slug = @rent.UrlSlug }, null)</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
+<br />
+    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

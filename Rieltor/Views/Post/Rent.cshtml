@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Rieltor.Models.PostViewModel>
+@using Rieltor.Controllers
+@{
+    ViewBag.Title = "Rent";
+}
+
+<h2>Rent</h2>
+
+<h2>Post</h2>
+<table class="table">
+    <thead>
+
+    </thead>
+    <tbody>
+
+        @foreach (var post in PostController.rentList)
+        {
+
+            <tr>
+                <th>@post.Id</th>
+                <th>@post.City.Name</th>
+                <th>@post.Neigh.Name</th>
+                <th>@post.Address.Street</th>
+                <th>@post.Address.Number</th>
+                <th>@post.HouseArea</th>
+                <th>@post.Description</th>
+                <th>@post.Price</th>
+
+            </tr>
+
+
+
+
+
+        }
+
+    </tbody>
+
+</table>

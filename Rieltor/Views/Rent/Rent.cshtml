@@ -1,0 +1,60 @@
+﻿@model Rieltor.Models.RentViewModel
+@using Rieltor.Controllers
+
+@{
+    ViewBag.Title = "Rent";
+}
+<h2>Rent</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CityId</th>
+                        <th>NeighborhoodId</th>
+                        <th>Street</th>
+                        <th>Number</th>
+                        @*<th>Price</th>
+                        <th>Flor </th>
+                        <th>AllFlor</th>
+                        <th>CountRoom</th>*@
+                        <th>AllArea</th>
+                        <th>LiveArea</th>
+                        <th>CookArea</th>
+                        <th>Description</th>
+                        <th>CountViews</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Id</td>
+                        <td>@Model.CityId</td>
+                        <td>@Model.NeighborhoodId</td>
+                        <td>@Model.Street</td>
+                        <td>@Model.Number</td>
+                        @*<td>@Model.Price</td>
+                        <td>@Model.Flor</td>
+                        <td>@Model.AllFlor</td>
+                        <td>@Model.CountRoom</td>*@
+                        <td>@Model.AllArea</td>
+                        <td>@Model.LiveArea</td>
+                        <td>@Model.CookArea</td>
+                        <td>@Model.Description</td>
+                        <td>@Model.CountView</td>
+                        <td><a href="@Url.Action("Edit","Rent",new {slug = Model.UrlSeo })" title="Edit"><img src="@Url.Content("~/Content/images/edit.png")" width="25" height="25" alt="edit" /></a>
+</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+      
+
+    </div>
+</div>
+

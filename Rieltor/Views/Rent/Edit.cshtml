@@ -1,0 +1,102 @@
+﻿@model Rieltor.Models.RentViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        if ($("#CityId").val() == '0') {
+            var productDefaultValue = "<option value='0'>--Select a category first--</option>";
+            $("#NeighborhoodId").html(productDefaultValue).show();
+        }
+
+        $("#CityId").change(function () {
+            var selectedItemValue = $(this).val();
+            
+            var ddlProducts = $("#NeighborhoodId");
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: '@Url.Action("GetNeibById", "Rent")',
+                data: { "id": selectedItemValue },
+                success: function (data) {
+                    ddlProducts.html('');
+                    $.each(data, function (id, option) {
+                        ddlProducts.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Found error to load product!!.');
+                }
+            });
+        });
+    });
+</script>
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit","Rent",FormMethod.Post,new { role = "form" }))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Id,"Code", htmlAttributes: new { @class = "control-label col-md-2"})
+            <div class="col-md-10">
+            @Html.EditorFor(m=>m.Id, new { @class = "form-control"})
+                </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Price, "Price", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Price, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Street,"Street", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Street, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Number,"Number", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Number, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m=>m.CityId,"City", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col col-md-10">
+        @Html.DropDownList("CityId",null, htmlAttributes: new { @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.NeighborhoodId, "Neighborhood", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col col-md-10">
+                @Html.DropDownList("NeighborhoodId", null, htmlAttributes: new { @class = "form-control" })
+
+            </div>
+        </div>
+       
+
+
+        
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, "Description", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Description, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Save</button>
+            </div>
+        </div>
+
+    </div>
+
+}

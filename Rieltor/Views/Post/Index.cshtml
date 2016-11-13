@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Rieltor.Models.AllPostViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            @{ Html.RenderPartial("Posts");}
+        </div>
+    </div>
+</div>
+<h2>Index</h2>
+
